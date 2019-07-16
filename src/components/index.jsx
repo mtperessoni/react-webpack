@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 
 class Root extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
   render() {

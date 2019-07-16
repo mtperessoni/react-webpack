@@ -23,6 +23,14 @@ module.exports = {
           }
         ]
       },
+      {
+        test: /\.css$/i,
+        use: [
+          'extract-loader',
+          'style-loader',
+          'css-loader',
+        ],
+      },
     ],
   },
   plugins: [
