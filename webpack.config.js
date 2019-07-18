@@ -1,9 +1,15 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
 const path = require('path');
+const paths = require('config/paths');
+const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
   resolve: {
-    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    modules: [paths.srcPath, 'node_modules'],
     extensions: ['.js', '.jsx'],
   },
   module: {
@@ -35,16 +41,30 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
-    })
+      template: paths.templatePath,
+      filename: paths.filenamePath,
+    }),
+    new DotenvPlugin({
+      sample: './.env',
+      path: './.env'
+    }),
+    new ModuleNotFoundPlugin(path.resolve()),
+    new webpack.HotModuleReplacementPlugin(),
+    new CaseSensitivePathsPlugin(),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json',
+      publicPath: '/',
+    }),
   ],
   output: {
-    path: __dirname + '/dist',
+    path: paths.outputPath,
     publicPath: '/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: paths.contentBasePath,
+    inline: true,
+    port: 3000,
   }
 };

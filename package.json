@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development --hot",
     "build": "webpack --config ./webpack.config.js --mode production",
+    "nodemon": "nodemon --inspect --exec npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -17,14 +18,23 @@
   },
   "dependencies": {
     "@babel/core": "^7.5.4",
+    "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.5.5",
     "babel-loader": "^8.0.6",
+    "case-sensitive-paths-webpack-plugin": "^2.2.0",
+    "const": "^1.0.0",
     "css-loader": "^3.0.0",
     "extract-loader": "^3.1.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "node-nightly": "^1.7.3",
+    "nodemon": "^1.19.1",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dev-utils": "^9.0.1",
+    "react-dom": "^16.8.6",
+    "webpack-dotenv-plugin": "^2.1.0",
+    "webpack-manifest-plugin": "^2.0.4"
   }
 }
