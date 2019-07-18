@@ -4,7 +4,7 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const path = require('path');
-const paths = require('config/paths');
+const paths = require('./config/paths');
 const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
@@ -42,7 +42,7 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: paths.templatePath,
-      filename: paths.filenamePath,
+      filename: "./index.html"
     }),
     new DotenvPlugin({
       sample: './.env',
@@ -63,7 +63,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: paths.contentBasePath,
+    contentBase: paths.contentBase,
     inline: true,
     port: 3000,
   }
