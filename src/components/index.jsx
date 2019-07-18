@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-console.log(process.env.TESTE)
 
 class Root extends Component {
   constructor(props) {

@@ -81,5 +81,5 @@ module.exports = {
     contentBase: paths.contentBase,
     inline: true,
     port: 3000,
-  }
+  },
 };
