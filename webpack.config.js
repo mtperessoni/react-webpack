@@ -3,7 +3,6 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
-const path = require('path');
 const paths = require('./config/paths');
 const DotenvPlugin = require('webpack-dotenv-plugin');
 
@@ -32,9 +31,25 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          'extract-loader',
-          'style-loader',
-          'css-loader',
+          {
+            loader: 'extract-loader',
+          },
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                require('autoprefixer'),
+                require('postcss-nested'),
+                require('postcss-flexbugs-fixes'),
+              ],
+            }
+          },
         ],
       },
     ],
@@ -48,7 +63,7 @@ module.exports = {
       sample: './.env',
       path: './.env'
     }),
-    new ModuleNotFoundPlugin(path.resolve()),
+    new ModuleNotFoundPlugin(paths.appPath),
     new webpack.HotModuleReplacementPlugin(),
     new CaseSensitivePathsPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
